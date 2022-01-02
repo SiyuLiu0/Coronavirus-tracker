@@ -5,7 +5,6 @@ public class LocationStats {
     private String state;
     private String country;
     private int latestTotalCases;
-
     private int diffFromPrevDay;
 
     public int getDiffFromPrevDay() {
@@ -21,6 +20,7 @@ public class LocationStats {
     }
 
     public void setState(String state) {
+        if(state.length() == 0)state = "NA";
         this.state = state;
     }
 

@@ -4,23 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Coronavirus Tracker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
 </head>
 <body>
-    <h1>Coronavirus Tracker</h1>
-    <p th:text="${testName}"></p>
+<div class="container">
+    <h1 class="display-4">Coronavirus Tracker</h1>
     <p>This application lists the current number of cases reported across the globe</p>
+    <div class="jumbotron">
+        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <p class="lead"><span th:text="${totalNewCases}" class="font-weight-bold"></span> New cases reported since previous day</p>
+    </div>
 
-    <table>
-        <tr>
-            <th>NAME</th>
-            <th>PRICE</th>
-            <th>IN STOCK</th>
-        </tr>
-        <tr th:each="prod : ${prods}">
-            <td th:text="${prod.name}">Onions</td>
-            <td th:text="${prod.price}">2.41</td>
-            <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
-        </tr>
-    </table>
+
+        <table class="table">
+            <tr>
+                <th>State</th>
+                <th>Country</th>
+                <th>Total cases reported</th>
+                <th>Changes since last day</th>
+            </tr>
+            <tr th:each="locationStat : ${locationStats}">
+                <td th:text="${locationStat.state}"></td>
+                <td th:text="${locationStat.country}"></td>
+                <td th:text="${locationStat.latestTotalCases}"></td>
+                <td th:text="${locationStat.diffFromPrevDay}"></td>
+            </tr>
+        </table>
+    </div>
+
 </body>
 </html>
